@@ -1,0 +1,15 @@
+{
+  "name": "astro",
+  "version": "1.0.0",
+  "description": "Astro",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "David Hewitt <hello@wp-unite.io> (https://way2adv.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^3.5.0"
+  }
+}

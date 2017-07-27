@@ -1,0 +1,11 @@
+# OS
+.DS_Store
+.db_thumbs
+
+# IDE
+/.idea
+/.vscode
+
+# Build
+/node_modules
+/.sass-cache
