@@ -1,6 +1,6 @@
 "use strict"
 
-const _ = require('lodash');
+const _ = require('lodash')
 const objectToFlags = require('../flags/object-to-flags')
 
 class Command {

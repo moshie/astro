@@ -1,7 +1,7 @@
 const path = require('path')
 
 const wp = require('./src/wp-cli')
-const test = path.resolve(__dirname, 'test');
+const test = path.resolve(__dirname, 'test')
 
 wp({
     command: 'core download',
