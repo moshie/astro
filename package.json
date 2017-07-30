@@ -10,6 +10,7 @@
   "author": "David Hewitt <hello@wp-unite.io> (https://way2adv.com/)",
   "license": "MIT",
   "dependencies": {
-    "bluebird": "^3.5.0"
+    "bluebird": "^3.5.0",
+    "lodash": "^4.17.4"
   }
 }
