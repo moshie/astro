@@ -26,7 +26,11 @@ class WP {
             return shell
         }
 
-        var data = execSync(this.command.prompt, this.command.execSyncOptions)
+        try {
+            var data = execSync(this.command.prompt, this.command.execSyncOptions)
+        } catch (error) {
+            console.log(error)
+        }
 
         if (this.command.verbose) {
             console.log(data.toString());
