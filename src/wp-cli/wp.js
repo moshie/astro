@@ -11,10 +11,22 @@ class WP {
     run() {
 
         if (this.command.async) {
-            return exec(this.command.prompt, this.command.execOptions)
+            var shell = exec(this.command.prompt, this.command.execOptions)
+
+            shell.stdout.on('data', (data) => {
+                console.log(data)
+            })
+
+            shell.stderr.on('data', (error) => {
+                console.log(error)
+            })
+
+            return shell
         }
 
-        return execSync(this.command.prompt, this.command.execSyncOptions)
+        var data = execSync(this.command.prompt, this.command.execSyncOptions)
+
+        return data.toString()
     }
 
 }

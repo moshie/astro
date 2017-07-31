@@ -82,7 +82,7 @@ var sample = wp({
 })
 
 wp({
-    command: `post delete ${sample.toString()}`,
+    command: `post delete ${sample}`,
     cwd: test,
     async: true
 })
@@ -121,7 +121,7 @@ wp('core language install en_GB', {
 })
 
 
-wp('wp option update show_on_front "page"', { cwd: test, async: true })
+wp('option update show_on_front "page"', { cwd: test, async: true })
 
 var home = wp({
     command: 'post list',
@@ -136,7 +136,7 @@ var home = wp({
     }
 })
 
-wp(`wp option update page_on_front ${home.toString()}`, { cwd: test, async: true })
+wp(`option update page_on_front ${home}`, { cwd: test, async: true })
 
 wp('rewrite structure "/%postname%/"', {
     cwd: test,
