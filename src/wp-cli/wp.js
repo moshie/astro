@@ -13,9 +13,11 @@ class WP {
         if (this.command.async) {
             var shell = exec(this.command.prompt, this.command.execOptions)
 
-            shell.stdout.on('data', (data) => {
-                console.log(data)
-            })
+            if (this.command.verbose) {
+                shell.stdout.on('data', (data) => {
+                    console.log(data)
+                })
+            }
 
             shell.stderr.on('data', (error) => {
                 console.log(error)
@@ -25,6 +27,10 @@ class WP {
         }
 
         var data = execSync(this.command.prompt, this.command.execSyncOptions)
+
+        if (this.command.verbose) {
+            console.log(data.toString());
+        }
 
         return data.toString()
     }

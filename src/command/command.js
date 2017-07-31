@@ -48,7 +48,8 @@ class Command {
         return {
             async: false,
             cwd: process.cwd(),
-            flags: {}
+            flags: {},
+            verbose: false
         }
     }
 
@@ -62,12 +63,12 @@ class Command {
         return `wp ${this.options.command} ${this.flags}`
     }
 
-    get async() {
-        return this.options.async
+    get verbose() {
+        return this.options.verbose
     }
 
-    get sync() {
-        // get syncronus command
+    get async() {
+        return this.options.async
     }
 
 }
