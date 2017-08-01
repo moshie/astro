@@ -1,16 +1,29 @@
 {
-  "name": "astro",
+  "name": "wp-astro",
   "version": "1.0.0",
-  "description": "Astro",
+  "description": "JavaScript api wrapper for wp-cli",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "wp-cli",
+    "WordPress",
+    "node",
+    "api",
+    "wrapper"
+  ],
+  "repository" : { 
+    "type" : "git", 
+    "url" : "https://github.com/moshie/astro.git"
+  },
+  "bugs": {
+    "url": "https://github.com/moshie/astro/issues",
+    "email": "hello@wp-unite.io"
+  },
   "author": "David Hewitt <hello@wp-unite.io> (https://way2adv.com/)",
   "license": "MIT",
   "dependencies": {
-    "bluebird": "^3.5.0",
     "lodash": "^4.17.4"
   }
 }
