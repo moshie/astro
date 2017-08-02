@@ -1,6 +1,6 @@
 {
   "name": "wp-astro",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "JavaScript api wrapper for wp-cli",
   "main": "index.js",
   "scripts": {

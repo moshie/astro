@@ -1,3 +1,5 @@
-const wp = require('./src/wp-cli');
+"use strict"
 
-module.exports = wp;
+const wp = require('./src/wp-cli')
+
+module.exports = wp

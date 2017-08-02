@@ -29,14 +29,14 @@ class WP {
         try {
             var data = execSync(this.command.prompt, this.command.execSyncOptions)
         } catch (error) {
-            console.log(error)
+            //console.error(error.message);
         }
 
         if (this.command.verbose) {
             console.log(data.toString());
         }
 
-        return data.toString()
+        return data;
     }
 
 }
