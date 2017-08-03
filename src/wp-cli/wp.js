@@ -1,6 +1,7 @@
 "use strict"
 
 const { exec, execSync } = require('child_process')
+const { Buffer } = require('buffer')
 
 class WP {
 
@@ -32,11 +33,23 @@ class WP {
             //console.error(error.message);
         }
 
+        var stdout = '';
+
         if (this.command.verbose) {
-            console.log(data.toString());
+            if (data instanceof Buffer) {
+                console.log(data.toString());
+            } else {
+                console.log(data);
+            }
         }
 
-        return data;
+        if (data instanceof Buffer) {
+            stdout = data.toString();
+        } else {
+            stdout = data;
+        }
+
+        return stdout;
     }
 
 }
