@@ -5,37 +5,34 @@ const { Buffer } = require('buffer')
 
 class WP {
 
+    /**
+     * WP constructor
+     * 
+     * @param  {Command}
+     * @return {void}
+     */
     constructor(command) {
         this.command = command
     }
 
+    /**
+     * Run the command
+     * 
+     * @return {ChildProcess|string}
+     */
     run() {
-
         if (this.command.async) {
             return this.async()
         }
 
         return this.sync()
-
-        var stdout = '';
-
-        if (this.command.verbose) {
-            if (data instanceof Buffer) {
-                console.log(data.toString());
-            } else {
-                console.log(data);
-            }
-        }
-
-        if (data instanceof Buffer) {
-            stdout = data.toString();
-        } else {
-            stdout = data;
-        }
-
-        return stdout;
     }
 
+    /**
+     * Execute the command asynchronously
+     * 
+     * @return {ChildProcess}
+     */
     async() {
         var shell = exec(this.command.prompt, this.command.execOptions)
 
@@ -48,30 +45,69 @@ class WP {
         return shell
     }
 
+    /**
+     * Execute the command synchronously
+     * 
+     * @return {string|object}
+     */
     sync() {
-        var shell = execSync(this.command.prompt, this.command.execSyncOptions)
+        var stdout = execSync(this.command.prompt, this.command.execSyncOptions)
 
-        shell = this.verbose(shell)
+        stdout = this.verbose(stdout)
 
-        // Buffer check here
+        stdout = this.getString(stdout)
 
-        // Json Check here
+        return this.isJson(stdout)
     }
 
+    /**
+     * Convert string to json
+     * 
+     * @param  {any}
+     * @return {string|object|number}
+     */
+    isJson(string) {
+        try {
+            var json = JSON.parse(string)
+        } catch (error) {
+            return string
+        }
+        return json
+    }
+
+    /**
+     * Verbose logging
+     * 
+     * @param  {ChildProcess|String}
+     * @return {ChildProcess|String}
+     */
     verbose(shell) {
         if (this.command.verbose) {
             if (this.command.async) {
                 shell.stdout.on('data', (data) => {
-                    // Buffer to string here
-                    console.log(data)
+                    console.log(this.getString(data))
                 })
                 return shell
             }
-            // Buffer to string here
-            console.log(shell)
+
+            console.log(this.getString(shell))
         }
 
         return shell
+    }
+
+    /**
+     * Convert buffer to a string
+     * 
+     * @param  {Buffer|String}
+     * @return {String}
+     */
+    getString(data) {
+        if (data instanceof Buffer) {
+            return data.toString()
+        }
+
+        return data
     }
 
 }

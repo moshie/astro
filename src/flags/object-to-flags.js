@@ -29,7 +29,7 @@ function determineFlag(flags, flag) {
     if (typeof flags[flag] === 'string') {
 
         // If the value has a space we need to wrap it in quotes to be processed
-        let value = needsQuotes(flags[flag].replace(/[\n\r]/g, ''))
+        let value = needsQuotes(flags[flag])
 
         // Push the flag to the initial object
         return `--${flag}=${value}`
