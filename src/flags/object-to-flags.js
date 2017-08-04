@@ -14,7 +14,7 @@ function determineFlag(flags, flag) {
     }
 
     // If the flag is a boolean we can just use the key
-    if (typeof flags[flag] === 'boolean') {
+    if (typeof flags[flag] === 'boolean' && flags[flag] === true) {
 
         // Push the flag to the initial object
         return `--${flag}`
