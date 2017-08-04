@@ -12,26 +12,10 @@ class WP {
     run() {
 
         if (this.command.async) {
-            var shell = exec(this.command.prompt, this.command.execOptions)
-
-            if (this.command.verbose) {
-                shell.stdout.on('data', (data) => {
-                    console.log(data)
-                })
-            }
-
-            shell.stderr.on('data', (error) => {
-                console.log(error)
-            })
-
-            return shell
+            return this.async()
         }
 
-        try {
-            var data = execSync(this.command.prompt, this.command.execSyncOptions)
-        } catch (error) {
-            //console.error(error.message);
-        }
+        return this.sync()
 
         var stdout = '';
 
@@ -50,6 +34,44 @@ class WP {
         }
 
         return stdout;
+    }
+
+    async() {
+        var shell = exec(this.command.prompt, this.command.execOptions)
+
+        shell = this.verbose(shell)
+
+        shell.stderr.on('data', (error) => {
+            console.log(error)
+        })
+
+        return shell
+    }
+
+    sync() {
+        var shell = execSync(this.command.prompt, this.command.execSyncOptions)
+
+        shell = this.verbose(shell)
+
+        // Buffer check here
+
+        // Json Check here
+    }
+
+    verbose(shell) {
+        if (this.command.verbose) {
+            if (this.command.async) {
+                shell.stdout.on('data', (data) => {
+                    // Buffer to string here
+                    console.log(data)
+                })
+                return shell
+            }
+            // Buffer to string here
+            console.log(shell)
+        }
+
+        return shell
     }
 
 }
